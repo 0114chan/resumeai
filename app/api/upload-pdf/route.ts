@@ -8,7 +8,7 @@ import pdf from 'pdf-parse'
 export async function POST(req: NextRequest) {
   try {
     // 1. 인증 확인
-    const supabase = createClient()
+    const supabase = await createClient()
     const { data: { user }, error: authError } = await supabase.auth.getUser()
     if (authError || !user) {
       return NextResponse.json({ error: '로그인이 필요합니다.' }, { status: 401 })

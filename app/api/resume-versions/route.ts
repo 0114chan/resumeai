@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 
 // GET — 내 버전 목록 전체
 export async function GET() {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
@@ -20,7 +20,7 @@ export async function GET() {
 
 // POST — 새 버전 저장
 export async function POST(req: NextRequest) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 
 // PATCH — 버전 수정 (label, content)
 export async function PATCH(req: NextRequest) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
@@ -69,7 +69,7 @@ export async function PATCH(req: NextRequest) {
 
 // DELETE — 버전 삭제
 export async function DELETE(req: NextRequest) {
-  const supabase = createClient()
+  const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
